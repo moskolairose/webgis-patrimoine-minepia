@@ -1,0 +1,31 @@
+# Données patrimoniales
+data/
+*.geojson
+*.csv
+*.xlsx
+*.xls
+*.shp
+*.shx
+*.dbf
+*.prj
+*.cpg
+*.sql
+
+# API et backend privés
+api/
+backend/
+
+# Configuration et secrets
+.env
+.env.*
+*.properties
+web.xml
+config.js
+secrets.*
+
+# Fichiers temporaires
+*.log
+*.tmp
+.vscode/
+.DS_Store
+Thumbs.db

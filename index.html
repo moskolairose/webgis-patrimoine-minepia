@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>WebGIS Patrimoine MINEPIA</title>
+
+    <!-- Leaflet -->
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    >
+
+    <!-- Feuille de style de l’application -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <header class="app-header">
+        <div>
+            <h1>Système de gestion du Patrimoine MINEPIA</h1>
+            <p>Suivi cartographique du foncier, des biens meubles et immeubles — Région du Littoral</p>
+        </div>
+
+        <div class="header-badge">
+            WebGIS
+        </div>
+    </header>
+
+    <main class="app-layout">
+
+        <!-- Panneau latéral -->
+        <aside class="sidebar">
+            <section class="panel crud-panel">
+    <div class="panel-heading">
+        <h2>Gestion du patrimoine</h2>
+        <span class="module-status">Prototype</span>
+    </div>
+
+    <div class="crud-actions">
+        <button
+            id="add-asset"
+            class="crud-button add-button"
+            type="button"
+        >
+            <span class="crud-icon">＋</span>
+            Ajouter
+        </button>
+
+        <button
+            id="view-assets"
+            class="crud-button view-button"
+            type="button"
+        >
+            <span class="crud-icon">☷</span>
+            Afficher
+        </button>
+
+        <button
+            id="edit-asset"
+            class="crud-button edit-button"
+            type="button"
+        >
+            <span class="crud-icon">✎</span>
+            Modifier
+        </button>
+
+        <button
+            id="delete-asset"
+            class="crud-button delete-button"
+            type="button"
+        >
+            <span class="crud-icon">×</span>
+            Supprimer
+        </button>
+    </div>
+
+    <p class="crud-help">
+        Sélectionnez un bien sur la carte pour consulter ou modifier sa fiche.
+    </p>
+</section>
+
+            <section class="panel">
+                <h2>Tableau de bord</h2>
+
+                <div class="statistics">
+                    <article class="stat-card">
+                        <span>Total des biens</span>
+                        <strong id="total-assets">0</strong>
+                    </article>
+
+                    <article class="stat-card">
+                        <span>Biens affichés</span>
+                        <strong id="visible-assets">0</strong>
+                    </article>
+                </div>
+            </section>
+
+            <section class="panel chart-panel">
+    <h2>Biens par catégorie</h2>
+
+    <div class="chart-container">
+        <canvas id="category-chart"></canvas>
+    </div>
+</section>
+
+<section class="panel chart-panel">
+    <h2>Biens par département</h2>
+
+    <div class="chart-container department-chart-container">
+        <canvas id="department-chart"></canvas>
+    </div>
+</section>
+
+            <section class="panel">
+                <h2>Rechercher</h2>
+
+                <label for="search-input">Identifiant ou désignation</label>
+
+                <input
+                    id="search-input"
+                    type="search"
+                    placeholder="Ex. PAT-001"
+                >
+            </section>
+
+            <section class="panel">
+                <h2>Filtres</h2>
+
+                <label for="category-filter">Catégorie</label>
+                <select id="category-filter">
+                    <option value="">Toutes les catégories</option>
+                </select>
+
+                <label for="department-filter">Département</label>
+                <select id="department-filter">
+                    <option value="">Tous les départements</option>
+                </select>
+
+                <label for="district-filter">Arrondissement</label>
+                <select id="district-filter">
+                    <option value="">Tous les arrondissements</option>
+                </select>
+
+                <label for="status-filter">État du bien</label>
+                <select id="status-filter">
+                    <option value="">Tous les états</option>
+                </select>
+
+                <button id="reset-filters" type="button">
+                    Réinitialiser les filtres
+                </button>
+            </section>
+
+            <section class="panel legend">
+                <h2>Légende</h2>
+
+                <div>
+                    <span class="symbol building"></span>
+                    Bâtiments
+                </div>
+
+                <div>
+                    <span class="symbol land"></span>
+                    Terrains
+                </div>
+
+                <div>
+                    <span class="symbol vehicle"></span>
+                    Matériel roulant
+                </div>
+
+                <div>
+                    <span class="symbol computer"></span>
+                    Matériel informatique
+                </div>
+            </section>
+
+        </aside>
+
+        <!-- Zone cartographique -->
+        <section class="map-container">
+
+            <div id="loading-message">
+                Chargement des données…
+            </div>
+
+            <div id="map"></div>
+
+            <div class="map-notice">
+                Les coordonnées utilisées dans ce prototype sont simulées
+                et doivent être vérifiées sur le terrain.
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer>
+        Prototype WebGIS du patrimoine MINEPIA — Région du Littoral
+    </footer>
+
+    <!-- Bibliothèque Leaflet -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <!-- Code de l’application -->
+     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script src="js/app.js"></script>
+    <div id="app-toast" class="app-toast" role="status"></div>
+    
+
+</body>
+</html>
